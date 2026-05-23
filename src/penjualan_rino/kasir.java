@@ -21,7 +21,9 @@ public kasir() {
     datatable();
 }
 protected void aktif() {
-    txtid.requestFocus();
+    txtnm.requestFocus(); // Fokus langsung pindah ke input Nama, bukan ID lagi
+    txtid.setEditable(false); // ID dikunci agar kasir tidak bisa mengetik manual
+    txtid.setBackground(new java.awt.Color(230, 230, 230));
 }
 
 protected void kosong() {
@@ -32,6 +34,7 @@ protected void kosong() {
     txtpwd.setText("");
     txtcari.setText("");
     buttonGroup1.clearSelection();
+    otomatis();
 }
 
 private void datatable(){
@@ -60,6 +63,23 @@ private void datatable(){
     }
 }
 
+private void otomatis() {
+    try {
+            String sql = "SELECT id FROM kasir ORDER BY id DESC LIMIT 1";
+            Statement stat = conn.createStatement();
+            ResultSet hasil = stat.executeQuery(sql);
+            if (hasil.next()) {
+                String idKasir = hasil.getString("id");
+                int nomor = Integer.parseInt(idKasir.substring(2)) + 1;
+                String kode = String.format("KS%03d", nomor);
+                txtid.setText(kode);
+            } else {
+                txtid.setText("KS001");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Gagal membuat ID otomatis: " + e);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -98,7 +118,7 @@ private void datatable(){
         jLabel9 = new javax.swing.JLabel();
         txtpwd = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("ID Kasir");
 
@@ -243,7 +263,7 @@ private void datatable(){
 
         jLabel8.setText("Agama");
 
-        txtagm.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--No Choose--", "Islam", "Kristen Protestan", "Kristen Katolik", "Hindu", "Budha", " " }));
+        txtagm.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--No Choose--", "Islam", "Kristen Protestan", "Kristen Katolik", "Hindu", "Budha", "" }));
         txtagm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtagmActionPerformed(evt);
@@ -372,15 +392,22 @@ private void datatable(){
     }//GEN-LAST:event_rlakiActionPerformed
 
     private void bsimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bsimpanActionPerformed
-String jenis = null;
-    if(rlaki.isSelected()){
+    String jenis = "";
+
+    if (rlaki.isSelected()) {
         jenis = "Laki-Laki";
-    }else if(rperempuan.isSelected()){
+    } else if (rperempuan.isSelected()) {
         jenis = "Perempuan";
     }
-    String sql = "insert into kasir values (?,?,?,?,?,?,?)";
-    try{
+
+    try {
+
+        String sql = "INSERT INTO kasir "
+                + "(id, nm_kasir, jenis_kelamin, no_telepon, agama, alamat, password) "
+                + "VALUES (?,?,?,?,?,?,?)";
+
         PreparedStatement stat = conn.prepareStatement(sql);
+
         stat.setString(1, txtid.getText());
         stat.setString(2, txtnm.getText());
         stat.setString(3, jenis);
@@ -390,60 +417,97 @@ String jenis = null;
         stat.setString(7, txtpwd.getText());
 
         stat.executeUpdate();
-        JOptionPane.showMessageDialog(null, "data berhasil disimpan");
+
+        JOptionPane.showMessageDialog(null, "Data berhasil disimpan");
+
         kosong();
-        txtid.requestFocus();
-    }
-    catch (SQLException e){
-        JOptionPane.showMessageDialog(null, "data gagal disimpan"+e);
-    }
-    datatable();        // TODO add your handling code here:
+        aktif();
+        datatable();
+
+    } catch (SQLException e) {
+
+        JOptionPane.showMessageDialog(null,
+        "Data gagal disimpan : " + e.getMessage());
+    }     // TODO add your handling code here:
     }//GEN-LAST:event_bsimpanActionPerformed
 
     private void bubahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bubahActionPerformed
-    String jenis = null;
-    if(rlaki.isSelected()){
+    String jenis = "";
+
+    if (rlaki.isSelected()) {
         jenis = "Laki-Laki";
-    }else if(rperempuan.isSelected()){
+    } else if (rperempuan.isSelected()) {
         jenis = "Perempuan";
     }
-    try{
-        String sql = "update kasir set nm_kasir=?,jenis_Kelamin=?,no_telepon=?,agama=?,alamat=?,password=? where id='"+txtid.getText()+"'";
+
+    try {
+
+        String sql = "UPDATE kasir SET "
+                + "nm_kasir=?, "
+                + "jenis_kelamin=?, "
+                + "no_telepon=?, "
+                + "agama=?, "
+                + "alamat=?, "
+                + "password=? "
+                + "WHERE id=?";
+
         PreparedStatement stat = conn.prepareStatement(sql);
+
         stat.setString(1, txtnm.getText());
         stat.setString(2, jenis);
         stat.setString(3, txttelp.getText());
         stat.setString(4, txtagm.getSelectedItem().toString());
         stat.setString(5, txtalamat.getText());
         stat.setString(6, txtpwd.getText());
+        stat.setString(7, txtid.getText());
 
         stat.executeUpdate();
-        JOptionPane.showMessageDialog(null, "data berhasil diubah");
+
+        JOptionPane.showMessageDialog(null, "Data berhasil diubah");
+
         kosong();
-        txtid.requestFocus();
+        aktif();
+        datatable();
+
+    } catch (SQLException e) {
+
+        JOptionPane.showMessageDialog(null,
+        "Data gagal diubah : " + e.getMessage());
     }
-    catch (SQLException e){
-        JOptionPane.showMessageDialog(null, "data gagal diubah"+e);
-    }
-    datatable();        // TODO add your handling code here:
     }//GEN-LAST:event_bubahActionPerformed
 
     private void bhapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bhapusActionPerformed
-    int ok = JOptionPane.showConfirmDialog(null, "hapus", "konfirmasi dialog", JOptionPane.YES_NO_OPTION);
-    if (ok==0){
-        String sql = "delete from kasir where id ='"+txtid.getText()+"'";
-        try{
+    int ok = JOptionPane.showConfirmDialog(
+            null,
+            "Yakin ingin menghapus data?",
+            "Konfirmasi",
+            JOptionPane.YES_NO_OPTION);
+
+    if (ok == JOptionPane.YES_OPTION) {
+
+        try {
+
+            String sql = "DELETE FROM kasir WHERE id=?";
+
             PreparedStatement stat = conn.prepareStatement(sql);
+
+            stat.setString(1, txtid.getText());
+
             stat.executeUpdate();
-            JOptionPane.showMessageDialog(null, "data berhasil dihapus");
+
+            JOptionPane.showMessageDialog(null,
+            "Data berhasil dihapus");
+
             kosong();
-            txtid.requestFocus();
+            aktif();
+            datatable();
+
+        } catch (SQLException e) {
+
+            JOptionPane.showMessageDialog(null,
+            "Data gagal dihapus : " + e.getMessage());
         }
-        catch (SQLException e){
-            JOptionPane.showMessageDialog(null, "data gagal dihapus"+e);
-        }
-        datatable();
-    }           // TODO add your handling code here:
+    }     // TODO add your handling code here:
     }//GEN-LAST:event_bhapusActionPerformed
 
     private void bbatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bbatalActionPerformed

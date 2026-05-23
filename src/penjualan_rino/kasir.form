@@ -6,7 +6,7 @@
     </Component>
   </NonVisualComponents>
   <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -400,7 +400,7 @@
             <StringItem index="3" value="Kristen Katolik"/>
             <StringItem index="4" value="Hindu"/>
             <StringItem index="5" value="Budha"/>
-            <StringItem index="6" value=" "/>
+            <StringItem index="6" value=""/>
           </StringArray>
         </Property>
       </Properties>

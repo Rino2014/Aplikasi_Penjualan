@@ -13,20 +13,22 @@ import koneksi.koneksi;
  *
  * @author Rino Sains
  */
-public final class gudang extends javax.swing.JFrame {
+public final class barang extends javax.swing.JFrame {
 private final Connection conn = new koneksi().connect();
 private DefaultTableModel tabmode;
     /**
      * Creates new form gudang
      */
-public gudang() {
+public barang() {
     initComponents();
     kosong();
     aktif();
     datatable();
 }
 protected void aktif() {
-    txtid.requestFocus();
+    txtbrg.requestFocus(); // Fokus langsung pindah ke input Nama, bukan ID lagi
+    txtid.setEditable(false); // ID dikunci agar kasir tidak bisa mengetik manual
+    txtid.setBackground(new java.awt.Color(230, 230, 230));
 }
 
 protected void kosong() {
@@ -35,6 +37,7 @@ protected void kosong() {
     txtjenis.setText("");
     txtbeli.setText("");
     txtjual.setText("");
+    otomatis();
 }
 
 private void datatable(){
@@ -60,6 +63,24 @@ private void datatable(){
         JOptionPane.showMessageDialog(null, "data gagal dipanggil "+e);
     }
 }
+
+private void otomatis() {
+    try {
+            String sql = "SELECT kd_brg FROM barang ORDER BY kd_brg DESC LIMIT 1";
+            Statement stat = conn.createStatement();
+            ResultSet hasil = stat.executeQuery(sql);
+            if (hasil.next()) {
+                String idGudang = hasil.getString("kd_brg");
+                int nomor = Integer.parseInt(idGudang.substring(1)) + 1;
+                String kode = String.format("D%03d", nomor);
+                txtid.setText(kode);
+            } else {
+                txtid.setText("D001");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Gagal membuat ID otomatis: " + e);
+        }
+    } //
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -96,7 +117,7 @@ private void datatable(){
         txtcari = new javax.swing.JTextField();
         bcari = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel2.setText("Kode Barang      :");
 
@@ -497,21 +518,23 @@ int ok = JOptionPane.showConfirmDialog(null, "hapus", "konfirmasi dialog", JOpti
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(gudang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(barang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(gudang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(barang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(gudang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(barang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(gudang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(barang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new gudang().setVisible(true);
+                new barang().setVisible(true);
             }
         });
     }
