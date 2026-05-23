@@ -1,10 +1,16 @@
 package penjualan_rino;
 
+import java.sql.Connection;
 import javax.swing.JOptionPane;
+import koneksi.koneksi;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 public class MenuUtama extends javax.swing.JFrame {
 
     public MenuUtama() {
+
         initComponents();
 
         this.setExtendedState(MAXIMIZED_BOTH);
@@ -15,7 +21,6 @@ public class MenuUtama extends javax.swing.JFrame {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
 
         lblWelcome = new javax.swing.JLabel();
@@ -44,7 +49,7 @@ public class MenuUtama extends javax.swing.JFrame {
 
         setTitle("Sistem Aplikasi Penjualan");
 
-        lblWelcome.setFont(new java.awt.Font("Tahoma", 1, 18));
+        lblWelcome.setFont(new java.awt.Font("Tahoma", 1, 22));
 
         lblWelcome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
@@ -187,7 +192,7 @@ public class MenuUtama extends javax.swing.JFrame {
                                 .addContainerGap()
                                 .addComponent(lblWelcome,
                                         javax.swing.GroupLayout.DEFAULT_SIZE,
-                                        700,
+                                        900,
                                         Short.MAX_VALUE)
                                 .addContainerGap())
         );
@@ -195,14 +200,13 @@ public class MenuUtama extends javax.swing.JFrame {
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                                .addGap(200, 200, 200)
+                                .addGap(250, 250, 250)
                                 .addComponent(lblWelcome)
                                 .addContainerGap(300, Short.MAX_VALUE))
         );
 
         pack();
     }
-    // </editor-fold>
 
     // ================= LOGOUT =================
 
@@ -210,7 +214,7 @@ public class MenuUtama extends javax.swing.JFrame {
 
         int opsi = JOptionPane.showConfirmDialog(
                 this,
-                "Apakah ingin logout?",
+                "Apakah ingin logout ?",
                 "Logout",
                 JOptionPane.YES_NO_OPTION
         );
@@ -287,25 +291,28 @@ public class MenuUtama extends javax.swing.JFrame {
 
         try {
 
-            String path = "src/laporan/lap_pelanggan.jasper";
+            Connection conn = new koneksi().connect();
 
-            java.sql.Connection conn =
-                    new koneksi.koneksi().connect();
+            String path =
+                    "src/penjualan_rino/laporan/pelanggan.jasper";
 
-            net.sf.jasperreports.engine.JasperPrint jp =
-                    net.sf.jasperreports.engine.JasperFillManager.fillReport(
+            JasperPrint jp =
+                    JasperFillManager.fillReport(
                             path,
                             null,
                             conn
                     );
 
-            net.sf.jasperreports.view.JasperViewer.viewReport(jp, false);
+            JasperViewer.viewReport(jp, false);
 
         } catch (Exception e) {
 
-            JOptionPane.showMessageDialog(null,
-                    "Laporan gagal : " + e);
-
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Laporan Pelanggan Gagal Ditampilkan\n" + e
+            );
+            
+            e.printStackTrace();
         }
     }
 
@@ -315,25 +322,28 @@ public class MenuUtama extends javax.swing.JFrame {
 
         try {
 
-            String path = "src/laporan/lap_barang.jasper";
+            Connection conn = new koneksi().connect();
 
-            java.sql.Connection conn =
-                    new koneksi.koneksi().connect();
+            String path =
+                    "src/penjualan_rino/laporan/Barang.jasper";
 
-            net.sf.jasperreports.engine.JasperPrint jp =
-                    net.sf.jasperreports.engine.JasperFillManager.fillReport(
+            JasperPrint jp =
+                    JasperFillManager.fillReport(
                             path,
                             null,
                             conn
                     );
 
-            net.sf.jasperreports.view.JasperViewer.viewReport(jp, false);
+            JasperViewer.viewReport(jp, false);
 
         } catch (Exception e) {
 
-            JOptionPane.showMessageDialog(null,
-                    "Laporan gagal : " + e);
-
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Laporan Barang Gagal Ditampilkan\n" + e
+            );
+            
+            e.printStackTrace();
         }
     }
 
@@ -343,25 +353,28 @@ public class MenuUtama extends javax.swing.JFrame {
 
         try {
 
-            String path = "src/laporan/lap_kasir.jasper";
+            Connection conn = new koneksi().connect();
 
-            java.sql.Connection conn =
-                    new koneksi.koneksi().connect();
+            String path =
+                    "src/penjualan_rino/laporan/Kasir.jasper";
 
-            net.sf.jasperreports.engine.JasperPrint jp =
-                    net.sf.jasperreports.engine.JasperFillManager.fillReport(
+            JasperPrint jp =
+                    JasperFillManager.fillReport(
                             path,
                             null,
                             conn
                     );
 
-            net.sf.jasperreports.view.JasperViewer.viewReport(jp, false);
+            JasperViewer.viewReport(jp, false);
 
         } catch (Exception e) {
 
-            JOptionPane.showMessageDialog(null,
-                    "Laporan gagal : " + e);
-
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Laporan Kasir Gagal Ditampilkan\n" + e
+            );
+            
+            e.printStackTrace();
         }
     }
 
@@ -369,29 +382,37 @@ public class MenuUtama extends javax.swing.JFrame {
 
     private void itemLapNotaActionPerformed(java.awt.event.ActionEvent evt) {
 
-        try {
+    try {
 
-            String path = "src/laporan/lap_nota.jasper";
+        Connection conn = new koneksi().connect();
 
-            java.sql.Connection conn =
-                    new koneksi.koneksi().connect();
+        String reportPath =
+                "src/penjualan_rino/laporan/Nota.jasper";
 
-            net.sf.jasperreports.engine.JasperPrint jp =
-                    net.sf.jasperreports.engine.JasperFillManager.fillReport(
-                            path,
-                            null,
-                            conn
-                    );
+        JasperPrint jp =
+                JasperFillManager.fillReport(
+                        reportPath,
+                        null,
+                        conn
+                );
 
-            net.sf.jasperreports.view.JasperViewer.viewReport(jp, false);
+        JasperViewer viewer =
+                new JasperViewer(jp, false);
 
-        } catch (Exception e) {
+        viewer.setTitle("Laporan Transaksi / Nota");
 
-            JOptionPane.showMessageDialog(null,
-                    "Laporan gagal : " + e);
+        viewer.setVisible(true);
 
-        }
+    } catch (Exception e) {
+
+        JOptionPane.showMessageDialog(
+                null,
+                "Cetak Laporan Nota Gagal\n\n" + e
+        );
+
+        e.printStackTrace();
     }
+}
 
     public static void main(String args[]) {
 

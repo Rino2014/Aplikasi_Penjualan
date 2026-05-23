@@ -630,27 +630,27 @@ public void hitung(){
     }//GEN-LAST:event_bcaripActionPerformed
 
     private void bcaripKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_bcaripKeyPressed
-             // TODO add your handling code here:
+            
     }//GEN-LAST:event_bcaripKeyPressed
 
     private void txtidnotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidnotaActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_txtidnotaActionPerformed
 
     private void txtidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtidActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_txtidActionPerformed
 
     private void txtnmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnmActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_txtnmActionPerformed
 
     private void txtalmtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtalmtActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtalmtActionPerformed
 
     private void txtkdbrgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtkdbrgActionPerformed
-      // TODO add your handling code here:
+     
     }//GEN-LAST:event_txtkdbrgActionPerformed
 
     private void bcaribrgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bcaribrgActionPerformed
@@ -664,7 +664,7 @@ public void hitung(){
     }//GEN-LAST:event_bcaribrgActionPerformed
 
     private void bcaribrgKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_bcaribrgKeyPressed
-        // TODO add your handling code here:
+      
     }//GEN-LAST:event_bcaribrgKeyPressed
 
     private void btambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btambahActionPerformed
@@ -712,31 +712,31 @@ public void hitung(){
     } catch(Exception e){
         JOptionPane.showMessageDialog(null,
         "Gagal tambah data : "+e);
-    }      // TODO add your handling code here:
+    }      
     }//GEN-LAST:event_btambahActionPerformed
 
     private void btambahKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btambahKeyPressed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btambahKeyPressed
 
     private void tbltransaksiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbltransaksiKeyPressed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_tbltransaksiKeyPressed
 
     private void tbltransaksiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbltransaksiMouseClicked
-         // TODO add your handling code here:
+         
     }//GEN-LAST:event_tbltransaksiMouseClicked
 
     private void txtnmbrgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnmbrgActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtnmbrgActionPerformed
 
     private void txthbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txthbActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txthbActionPerformed
 
     private void txthjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txthjActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_txthjActionPerformed
 
     private void txtqtyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtqtyActionPerformed
@@ -747,7 +747,7 @@ public void hitung(){
     }//GEN-LAST:event_txtqtyActionPerformed
 
     private void txttotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txttotalActionPerformed
-        // TODO add your handling code here:
+      
     }//GEN-LAST:event_txttotalActionPerformed
 
     private void bsimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bsimpanActionPerformed
@@ -824,25 +824,25 @@ public void hitung(){
     }//GEN-LAST:event_bsimpanActionPerformed
 
     private void bsimpanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_bsimpanKeyPressed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_bsimpanKeyPressed
 
     private void bbatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bbatalActionPerformed
         kosong();
         aktif();
-        autonumber();        // TODO add your handling code here:
+        autonumber();        
     }//GEN-LAST:event_bbatalActionPerformed
 
     private void bbatalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_bbatalKeyPressed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_bbatalKeyPressed
 
     private void bkeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bkeluarActionPerformed
-    dispose();        // TODO add your handling code here:
+    dispose();        
     }//GEN-LAST:event_bkeluarActionPerformed
 
     private void bkeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_bkeluarKeyPressed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_bkeluarKeyPressed
 
     private void bhapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bhapusActionPerformed
@@ -859,15 +859,15 @@ public void hitung(){
     tbltransaksi.setModel(tabmode);
 
     hitung();
-   // TODO add your handling code here:
+  
     }//GEN-LAST:event_bhapusActionPerformed
 
     private void bhapusKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_bhapusKeyPressed
-        // TODO add your handling code here:
+      
     }//GEN-LAST:event_bhapusKeyPressed
 
     private void txtttotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtttotalActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtttotalActionPerformed
 
     /**

@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package penjualan_rino;
 import java.sql.*;
 import javax.swing.JOptionPane;
@@ -21,9 +17,9 @@ public Pelanggan() {
     datatable();
 }
 protected void aktif() {
-    txtnm.requestFocus(); // Fokus langsung pindah ke input Nama, bukan ID lagi
+    txtnm.requestFocus(); 
     txtid.setEditable(false);
-    txtid.setBackground(new java.awt.Color(230, 230, 230));// ID dikunci agar kasir tidak bisa mengetik manual
+    txtid.setBackground(new java.awt.Color(230, 230, 230));
 }
 
 protected void kosong() {
@@ -33,7 +29,7 @@ protected void kosong() {
     txtalamat.setText("");
     txtcari.setText("");
     buttonGroup1.clearSelection();
-    otomatis(); // <--- WAJIB DIPANGGIL DI SINI
+    otomatis(); 
 }
 
 private void datatable(){
@@ -378,7 +374,7 @@ private void otomatis() {
     catch (SQLException e){
         JOptionPane.showMessageDialog(null, "data gagal diubah"+e);
     }
-    datatable();        // TODO add your handling code here:
+    datatable();        
     }//GEN-LAST:event_bubahActionPerformed
 
     private void bhapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bhapusActionPerformed
@@ -396,29 +392,28 @@ private void otomatis() {
                 JOptionPane.showMessageDialog(null, "data gagal dihapus" + e);
             }
             datatable();
-        } // <--- SEBELUMNYA KURUNG PENUTUP IF INI HILANG
-        // TODO add your handling code here:
+        }      
     }//GEN-LAST:event_bhapusActionPerformed
 
     private void bbatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bbatalActionPerformed
         kosong();
-        datatable();        // TODO add your handling code here:
+        datatable();        
     }//GEN-LAST:event_bbatalActionPerformed
 
     private void bkeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bkeluarActionPerformed
-    dispose ();        // TODO add your handling code here:
+    dispose ();        
     }//GEN-LAST:event_bkeluarActionPerformed
 
     private void txtidKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtidKeyTyped
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_txtidKeyTyped
 
     private void bcariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bcariActionPerformed
-    datatable();         // TODO add your handling code here:
+    datatable();         
     }//GEN-LAST:event_bcariActionPerformed
 
     private void txtcariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcariActionPerformed
-        // TODO add your handling code here:
+     
     }//GEN-LAST:event_txtcariActionPerformed
 
     private void tblplgnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblplgnMouseClicked
@@ -437,11 +432,11 @@ private void otomatis() {
         rperempuan.setSelected(true);
     }
     txttelp.setText(d);
-    txtalamat.setText(e);        // TODO add your handling code here:
+    txtalamat.setText(e);        
     }//GEN-LAST:event_tblplgnMouseClicked
 
     private void txtnmKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnmKeyTyped
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_txtnmKeyTyped
 
     /**
